@@ -49,16 +49,6 @@
         android:ems="10"
         android:inputType="textMultiLine" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnEnviar"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="51dp"
-        android:text="Destino" />
-
     <EditText
         android:id="@+id/txtAsunto"
         android:layout_width="wrap_content"
@@ -76,5 +66,15 @@
         android:layout_below="@+id/txtAsunto"
         android:layout_marginTop="24dp"
         android:text="Mensaje" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnEnviar"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="20dp"
+        android:text="Destino" />
 
 </RelativeLayout>

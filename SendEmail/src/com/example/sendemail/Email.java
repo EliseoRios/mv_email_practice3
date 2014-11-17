@@ -1,4 +1,4 @@
-package com.example.email_send;
+package com.example.sendemail;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class Email extends ActionBarActivity {
-	
 	private Button boton;
 	private EditText destinatario,asunto,mensaje;
 
@@ -28,27 +27,12 @@ public class Email extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(!destinatario.getText().toString().equals(""))
+				if(!destinatario.getText().toString().trim().equals(""))
 				{
 					enviarMail(v);
 				}
 			}
 		});
-	}
-	
-	public void enviarMail(View v)
-	{
-		Intent mailIntent = new Intent(Intent.ACTION_SEND);
-		mailIntent.setType("text/plain");//tipo texto plain o html
-		mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[]{destinatario.getText().toString()});
-		mailIntent.putExtra(Intent.EXTRA_SUBJECT, asunto.getText().toString());
-		mailIntent.putExtra(Intent.EXTRA_SUBJECT, mensaje.getText().toString());
-		
-		try{
-			startActivity(mailIntent.createChooser(mailIntent, "Enviando Correo"));
-		}catch(Exception e){
-			
-		}
 	}
 
 	@Override
@@ -57,16 +41,19 @@ public class Email extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.email, menu);
 		return true;
 	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	
+	public void enviarMail(View v)
+	{
+		Intent mailIntent = new Intent(Intent.ACTION_SEND);
+		mailIntent.setType("text/plain");//tipo texto plain o html
+		mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[]{destinatario.getText().toString()});
+		mailIntent.putExtra(Intent.EXTRA_SUBJECT, asunto.getText().toString());
+		mailIntent.putExtra(Intent.EXTRA_TEXT, mensaje.getText().toString());
+		
+		try{
+			startActivity(Intent.createChooser(mailIntent, "Enviando Correo"));
+		}catch(Exception e){
+			
 		}
-		return super.onOptionsItemSelected(item);
 	}
 }
